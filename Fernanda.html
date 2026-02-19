@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernanda ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* Tela de senha */
+#lock{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+input{
+    padding:12px;
+    border-radius:30px;
+    border:none;
+    text-align:center;
+    width:220px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff4f81;
+    color:white;
+    cursor:pointer;
+    font-size:1em;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff2f6d;
+}
+
+#conteudo{
+    display:none;
+    padding:40px 20px;
+    animation:fade 2s ease-in-out;
+}
+
+h1{
+    font-size:2.7em;
+}
+
+img{
+    width:220px;
+    border-radius:20px;
+    margin:20px 0;
+    box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+.heart{
+    position:fixed;
+    bottom:-10px;
+    font-size:20px;
+    animation:rise 6s linear infinite;
+}
+
+@keyframes rise{
+    from{transform:translateY(0);opacity:1}
+    to{transform:translateY(-100vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔒 Tela de senha -->
+<div id="lock">
+    <h2>Digite nossa frase especial 💖</h2>
+    <input type="password" id="senha" placeholder="Frase...">
+    <br>
+    <button onclick="entrar()">Entrar</button>
+</div>
+
+<!-- 💕 Conteúdo -->
+<div id="conteudo">
+    <h1>Fernanda ❤️</h1>
+    <p>Desde 04/12/2025 ✨</p>
+    <p id="contador"></p>
+
+    <!-- 📸 COLOQUE A FOTO DE VOCÊS AQUI -->
+    <img src="COLE_AQUI_O_LINK_DA_FOTO.jpg">
+
+    <h2>💌 Uma carta para você</h2>
+    <p id="carta"></p>
+
+    <!-- 🎵 Música romântica instrumental -->
+    <audio autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+</div>
+
+<script>
+function entrar(){
+    let senha=document.getElementById("senha").value.toLowerCase();
+    if(senha==="eu amo você"){
+        document.getElementById("lock").style.display="none";
+        document.getElementById("conteudo").style.display="block";
+        escreverCarta();
+    }else{
+        alert("Frase incorreta 💔");
+    }
+}
+
+function contadorDias(){
+    let inicio=new Date("2025-12-04");
+    let hoje=new Date();
+    let diff=hoje-inicio;
+    let dias=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("contador").innerHTML=
+    "Estamos juntos há <b>"+dias+" dias</b> 💞";
+}
+contadorDias();
+
+let texto="Fernanda, desde o dia 04/12/2025 minha vida ficou mais leve, mais feliz e mais colorida. Você é a melhor parte dos meus dias. Cada mensagem sua melhora tudo. Eu amo você ❤️";
+
+let i=0;
+function escreverCarta(){
+    if(i<texto.length){
+        document.getElementById("carta").innerHTML+=texto.charAt(i);
+        i++;
+        setTimeout(escreverCarta,40);
+    }
+}
+
+function coracoes(){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}
+setInterval(coracoes,500);
+</script>
+
+</body>
+</html>
